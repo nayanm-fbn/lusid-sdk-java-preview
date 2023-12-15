@@ -76,7 +76,7 @@ public class Transactions {
                 .source("Custodian");
 
         //  add the trade
-        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, new ArrayList<>(Collections.singletonList(transaction)));
+        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, new ArrayList<>(Collections.singletonList(transaction)), false);
 
         //  get the trade
         VersionedResourceListOfTransaction transactions = transactionPortfoliosApi.getTransactions(TutorialScope,
@@ -122,7 +122,7 @@ public class Transactions {
                 .source("Custodian");
 
         //  add the trade
-        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, new ArrayList<>(Collections.singletonList(transaction)));
+        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, new ArrayList<>(Collections.singletonList(transaction)), false);
 
         //  get the trade
         VersionedResourceListOfTransaction transactions = transactionPortfoliosApi.getTransactions(TutorialScope,
@@ -176,7 +176,7 @@ public class Transactions {
                 .settlementDate(effectiveDate.toString())
                 .units(new BigDecimal(100.0));
 
-        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, Arrays.asList(tx1, tx2, tx3));
+        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, Arrays.asList(tx1, tx2, tx3), false);
 
         List<Transaction> txsBeforeDeletion = transactionPortfoliosApi.getTransactions(TutorialScope, portfolioId,
                 null, null, null, null, null, null, null, null).getValues();

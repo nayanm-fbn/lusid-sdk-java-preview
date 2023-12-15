@@ -71,7 +71,7 @@ public class Holdings {
         requests.add(testDataUtilities.buildTransactionRequest(instrumentIds.get(3), new BigDecimal(100.0), new BigDecimal(105.0), currency, dayTPlus5, "Buy"));
 
         //  upload the transactions to LUSID
-        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioCode, requests);
+        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioCode, requests, false);
 
         //  get the holds on T+10
         VersionedResourceListOfPortfolioHolding holdings = transactionPortfoliosApi.getHoldings(
@@ -176,7 +176,7 @@ public class Holdings {
                 testDataUtilities.buildTransactionRequest(instrument1, new BigDecimal(100.0), new BigDecimal(104.0), currency, day2, "Buy"),
                 testDataUtilities.buildTransactionRequest(instrument3, new BigDecimal(100.0), new BigDecimal(103.0), currency, day2, "Buy")
         );
-        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioCode, requests);
+        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioCode, requests, false);
 
         //  get the holdings for day 2
         VersionedResourceListOfPortfolioHolding holdings = transactionPortfoliosApi.getHoldings(TutorialScope, portfolioCode, day2.toString(),

@@ -138,7 +138,7 @@ public class Valuation {
         assertEquals(portfolio.getId().getCode(), portfolioId);
 
         // upload the transactions
-        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, transactionRequests);
+        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, transactionRequests, false);
 
         // upload the latest market quotes
         quotesApi.upsertQuotes(quotesScope, quotesById);
@@ -202,7 +202,7 @@ public class Valuation {
         List<TransactionRequest> transactionRequests = createTransactionRequests.get();
 
         //  upload the transactions to LUSID
-        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, transactionRequests);
+        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, transactionRequests, false);
 
         //  create the quotes
         Map<String, UpsertQuoteRequest> quotes = Stream.of(

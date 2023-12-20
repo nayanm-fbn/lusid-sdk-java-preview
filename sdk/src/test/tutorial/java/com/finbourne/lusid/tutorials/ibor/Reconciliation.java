@@ -66,7 +66,7 @@ public class Reconciliation {
         yesterdaysTransactions.add(testDataUtilities.buildTransactionRequest(instrumentIds.get(3), new BigDecimal(2000.0), new BigDecimal(103.0), "GBP", yesterday, "StockIn"));
 
         //  Add the transactions to LUSID
-        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioCode, yesterdaysTransactions);
+        transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioCode, yesterdaysTransactions, null);
 
         //  Add transactions for today
         List<TransactionRequest> todaysTransactions = new ArrayList<>();
@@ -78,7 +78,7 @@ public class Reconciliation {
         todaysTransactions.add(testDataUtilities.buildTransactionRequest(instrumentIds.get(3), new BigDecimal(2000.0), new BigDecimal(103.0), "GBP", today.plusHours(20), "StockIn"));  // long 5000
 
         //  Add the transactions to LUSID
-        UpsertPortfolioTransactionsResponse upsertResult = transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioCode, todaysTransactions);
+        UpsertPortfolioTransactionsResponse upsertResult = transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioCode, todaysTransactions, null);
 
         //  Get the time of the last update
         OffsetDateTime lastAsAt = upsertResult.getVersion().getAsAtDate();

@@ -68,20 +68,20 @@ public class Bitemporal {
         newTransactions.add(testDataUtilities.buildTransactionRequest(instrumentIds.get(2), new BigDecimal(100.0), new BigDecimal(103.0), "GBP", OffsetDateTime.of(2018, 1, 3, 0, 0, 0, 0, ZoneOffset.UTC), "Buy"));
 
         //  add initial batch of transactions
-        final UpsertPortfolioTransactionsResponse  initialResult = transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, newTransactions);
+        final UpsertPortfolioTransactionsResponse  initialResult = transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, newTransactions, null);
 
         OffsetDateTime    asAtBatch1 = initialResult.getVersion().getAsAtDate();
 
         //  add another trade for 2018-1-8
         TransactionRequest  newTrade = testDataUtilities.buildTransactionRequest(instrumentIds.get(3), new BigDecimal(100.0), new BigDecimal(104.0), "GBP", OffsetDateTime.of(2018, 1, 8, 0, 0, 0, 0, ZoneOffset.UTC), "Buy");
-        UpsertPortfolioTransactionsResponse addedResult = transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, Collections.singletonList(newTrade));
+        UpsertPortfolioTransactionsResponse addedResult = transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, Collections.singletonList(newTrade), null);
 
         OffsetDateTime    asAtBatch2 = addedResult.getVersion().getAsAtDate();
         Thread.sleep(500);
 
         //  add back-dated trade
         TransactionRequest  backDatedTrade = testDataUtilities.buildTransactionRequest(instrumentIds.get(4), new BigDecimal(100.0), new BigDecimal(105.0), "GBP", OffsetDateTime.of(2018, 1, 5, 0, 0, 0, 0, ZoneOffset.UTC), "Buy");
-        UpsertPortfolioTransactionsResponse backDatedResult = transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, Collections.singletonList(backDatedTrade));
+        UpsertPortfolioTransactionsResponse backDatedResult = transactionPortfoliosApi.upsertTransactions(TutorialScope, portfolioId, Collections.singletonList(backDatedTrade), null);
 
         OffsetDateTime    asAtBatch3 = backDatedResult.getVersion().getAsAtDate();
         Thread.sleep(500);
